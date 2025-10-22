@@ -1,0 +1,686 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    /* Copyright 2024 Keysight Technologies Inc. */
+
+.qcs_table {
+    border-collapse: collapse;
+    border-color: #8e9aad;
+    border-spacing: 0;
+    font-family: "Roboto Medium", Times, serif;
+    border-color: #bac3d1;
+    border-style: solid;
+    border-width: 1px;
+    color: rgba(0, 0, 0, 0.72);
+}
+
+.qcs_table .th_title {
+    background-image: linear-gradient(to bottom, #d7dded, #d1d7e8);
+    border-color: #bac3d1;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+    text-align: center;
+}
+
+.qcs_table .th_sub {
+    background-color: #d7dded;
+    border-color: #bac3d1;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 12px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 5px 20px;
+    word-break: normal;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(67, 74, 89, 0.08);
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+tr:hover {
+    background-color: rgba(44, 95, 199, 0.1);
+}
+
+.qcs_table td {
+    font-size: 12px;
+}
+
+.qcs_table .td_container {
+    flex-direction: row;
+    overflow: visible;
+    height: 100%;
+    user-select: none;
+    width: 75px;
+    margin: auto;
+    text-align: center;
+    vertical-align: center;
+    position: relative;
+}
+
+.qcs_table .td_container:hover {
+    background-color: #d1d7e8;
+}
+
+.qcs_table .td_boxed_container:hover {
+    background-color: #d1d7e8;
+}
+
+.qcs_table .td_boxed_container {
+    flex-direction: row;
+    overflow: visible;
+    user-select: none;
+    height: 40px;
+    width: 50px;
+    border: 2.5px solid rgb(82, 79, 86);
+    text-align: center;
+    margin: auto;
+    line-height: 35px;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 2;
+    position: relative;
+}
+
+.qcs_table .td_channel {
+    background-image: linear-gradient(to bottom, #d7dded, #d1d7e8);
+    border-color: #bac3d1;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 12px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 5px 10px 5px 10px;
+    word-break: normal;
+    text-align: center;
+    vertical-align: center;
+}
+
+.qcs_table .td_channel_idx {
+    background-color: #d7dded;
+    border-color: #bac3d1;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 12px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 5px 10px 5px 10px;
+    word-break: normal;
+    text-align: center;
+    vertical-align: center;
+}
+
+.qcs_table td rotate_content {
+    -ms-writing-mode: tb-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+}
+
+.qcs_table td.td_channel:hover {
+    background-color: #d1d7e8;
+}
+
+.qcs_table td.td_channel_idx:hover {
+    background-color: #d1d7e8;
+}
+
+.qcs_table .th_sub:hover {
+    background-color: #d1d7e8;
+}
+
+.jp-OutputArea-output .qcs-tooltip.qcs-tooltip dl {
+    width: unset;
+}
+
+.jp-OutputArea-output .qcs-tooltip.qcs-tooltip dt {
+    display: flex;
+    float: none;
+}
+
+.jp-RenderedHTMLCommon .qcs-tooltip.qcs-tooltip svg {
+    max-width: unset;
+    height: unset;
+}
+
+.qcs-tooltip {
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 2px;
+    color: #000;
+    display: none;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: normal;
+    margin: 0px;
+    overflow-wrap: normal;
+    padding: 8px;
+    text-align: left;
+    z-index: 100;
+    max-width: 450px;
+    max-height: 200px;
+}
+
+.qcs-tooltip.wrapped {
+    max-width: 400px;
+}
+
+.qcs-tooltip.qcs-tooltip > dl > dd > ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.qcs-tooltip.qcs-tooltip > dl > dd > ul > li {
+    list-style-type: none;
+    margin: 0px 0px 0px 1em;
+    padding: 0px;
+}
+
+.qcs-tooltip.qcs-tooltip dt {
+    background: none !important;
+    border-left: none !important;
+    color: #134f6d !important;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0px !important;
+    padding: 0px;
+}
+
+.qcs-tooltip.qcs-tooltip dl {
+    display: inline-block;
+    margin: 0px;
+    vertical-align: top;
+}
+
+.qcs-tooltip.qcs-tooltip dd {
+    margin: 0px 10px 0px 0px;
+}
+
+.qcs-tooltip canvas {
+    outline: black 1px solid;
+}
+
+.waveform-container {
+    width: 450px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.operation-table {
+    border-collapse: collapse;
+    border-color: #b1b1b1;
+    border-spacing: 0;
+}
+
+.operation-table td {
+    border-width: 0px;
+    color: #444;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+    text-align: left;
+    vertical-align: top;
+}
+
+.operation-table td.td-param {
+    background-color: #e6ebf5;
+}
+
+.operation-table td.td-param:hover {
+    background-color: #f1f4f9;
+}
+
+.operation-table td.td-value {
+    background-color: #e6ebf5;
+}
+
+.operation-table td.td-value:hover {
+    background-color: #f1f4f9;
+}
+
+.gate-table {
+    border-collapse: collapse;
+    border-color: #b1b1b1;
+    border-spacing: 0;
+}
+
+.gate-table td {
+    background-color: #e6ebf5;
+    color: #444;
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: center;
+}
+
+.gate-table td:hover {
+    background-color: #f1f4f9;
+}
+
+</style>
+</head>
+<body>
+
+<table class="qcs_table" id="id-227879-010">
+  <thead>
+    <tr>
+      <th class="th_sub" colspan="2" rowspan="2">
+        <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1563 1206" width="75" height="55">
+	<title>keysight-logo-svg</title>
+	<style>
+		.s0 { fill: #e90029 }
+	</style>
+	<g id="KS-Horizontal-Logo-2021_RGB">
+		<path id="Layer" class="s0" d="m1434 622.3c-87.4 0-92.8 27.3-122.4 123.7-46.9 156.5-77.7 220.9-131.6 220.9-53.8 0-76.5-53.6-125-196.6-23.1-65.9-67-148-128.9-148-62 0-115.8 86.3-143.9 198.1-64.6 260.2-79.3 385.5-177.4 385.5-98.1 0-111.6-127.2-172-385.5-31.1-130.7-56.5-198.1-113.1-198.1-37.7 0-69.6 38.5-88.8 122.6-26.6 108.7-42.8 175-88.5 175-45.8 0-61.6-81-82-210.1-0.9-9.2-3.1-18.3-6.3-27-3.2-8.7-7.5-16.9-12.7-24.5-5.3-7.6-11.5-14.6-18.4-20.6-7-6.1-14.7-11.3-23-15.4h130.4c62 0 93.9-49.8 115.5-140.3 36.1-154.6 63.1-295 145-295 82 0 114.3 171.2 142.7 286.9 18.9 77.1 50.8 148.4 112.8 148.4 61.9 0 110-102.2 129.6-188.2 16.2-70.1 53.5-433.6 178.6-433.6 125 0 149.6 277.9 188.1 432.1 43.1 176.6 70 190.1 99.7 190.1 29.6 0 48.4-18.9 65.8-86.4 30.3-114.5 54.6-211.6 104.2-211.6 49.7 0 64.7 95.6 93.9 211.2 18.1 71.3 44.6 86.4 56.6 86.4z"/>
+	</g>
+</svg>
+
+      </th>
+      <th class="th_title" colspan="1" rowspan="1">
+      <div>
+      Program
+      <div class='qcs-tooltip'>
+              
+
+
+
+<div>
+    <b>Program</b>
+    <br/>
+    <table class="operation-table">
+        <tbody>
+            <tr>
+                <td class="td-param">Duration</td>
+                <td class="td-value">20 us</td>
+            </tr>
+            <tr>
+                <td class="td-param">Layers</td>
+                <td class="td-value">1</td>
+            </tr>
+            <tr>
+                <td class="td-param">Targets</td>
+                <td class="td-value">2</td>
+            </tr>
+            <tr>
+                <td class="td-param">Repetitions</td>
+                <td class="td-value">
+                    <b>Repeat with 1 repetitions</b>
+                    <br/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+      </div>
+      </div>
+      </th>
+    </tr>
+    <tr>
+      <th class="th_sub" colspan="1">
+      <div>
+      Layer #0
+      <div class='qcs-tooltip'>
+        
+
+
+
+<div>
+    <b>Layer #0 </b>
+    <br/>
+    <table class="operation-table">
+        <tbody>
+            <tr>
+                <td class="td-param">Duration</td>
+                <td class="td-value">20 us</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+      </div>
+      </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+   <!-- Loop over targets (table rows) -->
+      
+      <tr>
+        <td class="td_channel" rowspan="1">
+          <rotate_content>awg_channels</rotate_content>
+        </td>
+        <!-- Loop over target labels (sub-rows) -->
+          <td class="td_channel_idx">
+            <rotate_content>3</rotate_content>
+          </td>
+          <!-- Loop over operations (layers) for each (target, label) combination (table columns) -->
+            
+            <!-- Loop over each operation in this layer (sub-columns) -->
+                <!-- Determine table cell type (single vs. multi-target operations) -->
+                
+                <td>
+                <!-- Populate table cell with either operation icon + tooltip or gate box -->
+                    <div class='td_container'>
+                      <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="18.404179mm"
+   height="12mm"
+   xml:space="preserve"
+   overflow="hidden"
+   version="1.1"
+   id="svg878"
+   sodipodi:docname="icon_pulse.svg"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs882" /><sodipodi:namedview
+     id="namedview880"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     units="mm"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="4.4621965"
+     inkscape:cx="39.778616"
+     inkscape:cy="61.404736"
+     inkscape:window-width="1312"
+     inkscape:window-height="966"
+     inkscape:window-x="1129"
+     inkscape:window-y="1638"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg878"
+     inkscape:document-units="mm" /><path
+     d="M 35.421075,0 C 33.701198,0 32.505873,1.7672989 31.433006,5.8976717 30.464318,9.6208482 29.636365,15.174739 28.956455,22.407481 27.757476,35.412731 25.734197,41.619806 24.558979,42.847403 23.968627,42.10744 22.277992,38.71703 21.223403,23.732538 21.077186,20.578435 20.640361,17.44102 19.916588,14.353671 19.017352,10.814067 17.924381,9.1902881 16.365341,9.1268723 c -1.802125,-0.091786 -3.31547,1.5603627 -4.755708,9.9128947 -0.224809,1.315044 -0.420374,1.63546 -0.520898,1.72224 -0.473378,0.101799 -0.95955,0.138514 -1.4457215,0.108474 L 1.2757436,20.731968 C 0.5702464,20.731968 0,21.254314 0,21.896817 c 0,0.644171 0.5702464,1.164848 1.2757436,1.164848 l 8.3745809,0.138514 c 3.1034565,0 3.9898965,-0.705919 4.5235895,-3.793268 0.897407,-5.208442 1.727189,-7.055845 2.142079,-7.691672 0.879129,1.325057 2.08542,6.011153 2.399787,12.149137 0.489828,6.924007 1.169737,12.219228 2.023279,15.753826 0.954066,4.015056 2.098213,5.690235 3.81992,5.736128 1.884372,0 3.185703,-2.047997 4.441342,-6.837561 1.251983,-5.231805 2.090904,-10.538709 2.513105,-15.878989 1.463997,-15.6737211 3.280745,-19.2934297 3.927755,-20.1078224 1.054591,1.3083686 2.750708,7.342885 3.441583,19.7056334 1.257466,11.932188 3.525658,13.424128 5.360682,13.400765 3.768744,-0.05173 5.402719,-8.691306 5.760951,-13.76791 0.678081,-6.735428 1.608387,-9.080145 2.072626,-9.86116 0.55928,1.024666 0.950411,2.119423 1.162426,3.247557 0.06397,0.275358 0.138906,0.572412 0.213842,0.946231 0.628733,2.988888 1.633975,7.509769 4.925686,7.549821 l 9.90255,0.113481 c 0.705497,0 1.277571,-0.522346 1.277571,-1.166517 0,-0.645841 -0.572074,-1.168187 -1.277571,-1.168187 l -9.902549,-0.113481 c -0.809677,0 -1.639458,-1.917494 -2.456446,-5.669041 -0.08225,-0.367144 -0.149872,-0.705918 -0.219325,-0.991289 -0.899235,-3.753216 -2.079938,-5.4787933 -3.770572,-5.3636436 -1.688807,0.113481 -3.410512,1.6171036 -4.485208,12.2926566 -0.477033,6.787162 -2.299262,11.021003 -3.229568,11.60009 -0.363715,-0.293716 -1.847818,-2.025969 -2.801884,-11.1979 C 41.192993,16.92535 40.56426,11.78533 39.531602,6.7070579 38.480667,2.0660208 37.256099,0.0801042 35.433869,0.05173396 Z"
+     fill="#524f56"
+     fill-rule="evenodd"
+     fill-opacity="1"
+     id="path872"
+     style="stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none" /></svg>
+
+                    <div class='qcs-tooltip'>
+                      
+
+
+
+
+
+
+
+
+<div class="waveform-container">
+    <b>RFWaveform on ('awg_channels', 3)</b>
+    <br/>
+    <br/>
+    Parameters
+    <br/>
+    <table class="operation-table">
+        <tbody>
+            <tr>
+                <td class="td-param">Duration</td>
+                <td class="td-value">20 us</td>
+            </tr>
+            <tr>
+                <td class="td-param">Amplitude</td>
+                <td class="td-value">1</td>
+            </tr>
+            <tr>
+                <td class="td-param">Frequency</td>
+                <td class="td-value">540 MHz</td>
+            </tr>
+            <tr>
+                <td class="td-param">Envelope</td>
+                <td class="td-value">GaussianEnvelope(2.0)</td>
+            </tr>
+            <tr>
+                <td class="td-param">Instantaneous Phase</td>
+                <td class="td-value">0 rad</td>
+            </tr>
+            <tr>
+                <td class="td-param">Post-phase</td>
+                <td class="td-value">0 rad</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+                    </div>
+                  </div>
+                  </td>
+             <!-- fill extra columns if this layer has more operations for a different target-->
+        </tr>
+      
+      <tr>
+        <td class="td_channel" rowspan="1">
+          <rotate_content>dig_channels</rotate_content>
+        </td>
+        <!-- Loop over target labels (sub-rows) -->
+          <td class="td_channel_idx">
+            <rotate_content>3</rotate_content>
+          </td>
+          <!-- Loop over operations (layers) for each (target, label) combination (table columns) -->
+            
+            <!-- Loop over each operation in this layer (sub-columns) -->
+                <!-- Determine table cell type (single vs. multi-target operations) -->
+                
+                <td>
+                <!-- Populate table cell with either operation icon + tooltip or gate box -->
+                    <div class='td_container'>
+                      <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="20mm"
+   height="12mm"
+   xml:space="preserve"
+   overflow="hidden"
+   version="1.1"
+   id="svg3476"
+   sodipodi:docname="icon_measurement.svg"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs3480"><inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 22.677165 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="75.590551 : 22.677165 : 1"
+       inkscape:persp3d-origin="37.795276 : 15.11811 : 1"
+       id="perspective3361" /></defs><sodipodi:namedview
+     id="namedview3478"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="3.8434291"
+     inkscape:cx="37.336451"
+     inkscape:cy="74.933086"
+     inkscape:window-width="1296"
+     inkscape:window-height="966"
+     inkscape:window-x="248"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3476"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="mm"
+     inkscape:document-units="mm" /><path
+     d="m 70.711271,45.354314 c -0.186758,8.9e-4 -0.369924,-0.03399 -0.536929,-0.10197 L 51.99955,38.016096 C 51.381812,37.78455 51.107062,37.186687 51.381812,36.675802 52.34613,34.954794 52.856123,33.083727 52.875876,31.187427 52.888447,25.58031 48.3865,20.648534 41.851763,19.109943 c -0.657244,-0.149169 -1.045126,-0.710371 -0.863756,-1.253612 0.179576,-0.543242 0.860165,-0.862508 1.519205,-0.713339 7.626553,1.766723 12.895286,7.507573 12.888103,14.044435 -0.01077,1.850881 -0.429185,3.684693 -1.235477,5.411935 l 15.96961,6.370031 c 1.998671,-3.708442 3.020453,-7.723831 3.002495,-11.781966 0,-16.098513 -15.815175,-29.1490826 -35.32421,-29.1490826 -19.509034,0 -35.3260057,13.0505696 -35.3260057,29.1490826 0.00898,3.994312 0.9948459,7.946025 2.8965458,11.618845 L 21.311968,36.436241 c -3.496326,-7.52954 1.066676,-15.972201 10.192681,-18.857023 2.007649,-0.63497 4.139205,-0.962251 6.290514,-0.966258 0.617738,0 1.172625,0.04586 1.752652,0.09173 h 0.161618 c 0.682385,0.05625 1.179808,0.558233 1.11157,1.121068 -0.06824,0.562834 -0.676998,0.973531 -1.359384,0.917277 h -0.159821 c -0.53693,-0.04082 -1.007416,-0.08149 -1.506635,-0.08149 -8.400521,0.0077 -15.202825,5.63324 -15.193846,12.565214 0.0018,1.83025 0.49024,3.637791 1.427622,5.296163 0.28732,0.505393 0.02873,1.107412 -0.580028,1.350535 L 5.292077,45.099465 c -0.6159424,0.241936 -1.3522002,0.02597 -1.6449075,-0.482239 -0.00539,-0.0091 -0.010775,-0.01811 -0.016162,-0.02731 C 1.2552297,40.393298 0.01616176,35.819528 0,31.187427 0,13.963097 16.921358,0 37.795163,0 c 20.873805,0 37.795163,13.963097 37.795163,31.187427 0.01975,4.710174 -1.2678,9.361423 -3.767485,13.596186 -0.208307,0.349842 -0.639287,0.571443 -1.11157,0.570701 z"
+     fill="#524f56"
+     fill-rule="evenodd"
+     fill-opacity="1"
+     id="path3460"
+     style="stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none" /><path
+     d="m 25.675642,22.696675 c -0.319644,2.97e-4 -0.626717,-0.100485 -0.858369,-0.281269 L 10.445881,11.116718 C 9.9484583,10.727097 9.9287051,10.079363 10.402783,9.6700021 10.876861,9.2604927 11.665196,9.2444626 12.162619,9.6342313 L 26.534011,20.932772 c 0.497423,0.389026 0.518972,1.036167 0.04489,1.445528 -0.235244,0.203493 -0.56207,0.318672 -0.903263,0.318375 z"
+     fill="#524f56"
+     fill-rule="evenodd"
+     fill-opacity="1"
+     id="path3462"
+     style="stroke-width:2.35981" /><path
+     d="m 49.361592,22.621868 c -0.68418,-0.0022 -1.237272,-0.459678 -1.23368,-1.02177 0,-0.275035 0.136477,-0.537898 0.378903,-0.728775 L 63.120634,9.390663 c 0.45612,-0.4178213 1.239068,-0.4519594 1.749061,-0.076143 0.508197,0.3758165 0.549499,1.019395 0.09158,1.437365 -0.0413,0.0374 -0.0844,0.07228 -0.132886,0.104344 L 50.214574,22.357223 c -0.229856,0.177222 -0.536929,0.272363 -0.852982,0.264645 z"
+     fill="#524f56"
+     fill-rule="evenodd"
+     fill-opacity="1"
+     id="path3464"
+     style="stroke-width:2.35981" /><path
+     d="m 37.850831,35.11272 c -2.557149,0 -4.629445,-1.71329 -4.629445,-3.826738 0,-2.1133 2.072296,-3.82659 4.629445,-3.82659 2.557149,0 4.629445,1.71329 4.629445,3.82659 0,2.113448 -2.072296,3.826738 -4.629445,3.826738 z m 0,-5.61246 c -1.194174,0 -2.160288,0.799575 -2.160288,1.785722 0,0.986296 0.966114,1.78587 2.160288,1.78587 1.192379,0 2.160288,-0.799574 2.160288,-1.78587 0,-0.986147 -0.967909,-1.785722 -2.160288,-1.785722 z"
+     fill="#524f56"
+     fill-rule="evenodd"
+     fill-opacity="1"
+     id="path3466"
+     style="stroke-width:2.35981" /><path
+     d="m 40.844347,31.064381 c -0.272954,0.0019 -0.536929,-0.07154 -0.754215,-0.208985 -0.698547,-0.438453 -0.79013,-0.509846 0.312461,-10.196323 0.03771,-0.372106 0.08081,-0.744212 0.122111,-1.116466 l -3.467595,9.686477 c -0.192145,0.54057 -0.87453,0.848704 -1.524592,0.688255 -0.650062,-0.160449 -1.019986,-0.728775 -0.827841,-1.269494 L 41.744018,8.974326 c 0.0431,-0.143974 0.120316,-0.2791907 0.228061,-0.3977837 0.244222,-0.2551456 0.612351,-0.4065408 1.003824,-0.4129232 0.718301,0 1.300124,0.4838712 1.300124,1.0808435 0.0018,0.044083 0.0018,0.088314 0,0.1325451 -0.533338,3.4666553 -2.311131,18.5367183 -2.250076,20.3568763 0.193941,0.501237 -0.104153,1.042401 -0.685976,1.249011 -0.156231,0.05566 -0.325031,0.08342 -0.495628,0.08149 z"
+     fill="#524f56"
+     fill-rule="evenodd"
+     fill-opacity="1"
+     id="path3468"
+     style="stroke-width:2.35981" /><path
+     d="m 35.557658,39.570569 h -0.251405 c -0.605168,-0.10375 -1.073859,-0.492628 -1.194175,-0.987929 -0.02514,-0.07377 -0.03771,-0.149911 -0.03771,-0.226499 l -0.125703,-5.094005 c -0.01437,-0.568326 0.53693,-1.038245 1.231885,-1.049526 0.69316,-0.01143 1.2678,0.440085 1.282166,1.008411 l 0.0431,1.785426 0.628513,-1.029043 c 0.334009,-0.498269 1.098999,-0.68024 1.707758,-0.406689 0.581824,0.262121 0.815271,0.851079 0.529747,1.343113 l -2.514051,4.013459 -0.06824,0.103009 c -0.278342,0.334999 -0.738054,0.537007 -1.231885,0.540273 z"
+     fill="#524f56"
+     fill-rule="evenodd"
+     fill-opacity="1"
+     id="path3470"
+     style="stroke-width:2.35981" /></svg>
+
+                    <div class='qcs-tooltip'>
+                      
+
+
+
+
+
+
+
+
+<div class="waveform-container">
+    <b>Acquisition on ('dig_channels', 3)</b>
+    <br/>
+    <br/>
+    Parameters
+    <br/>
+    <table class="operation-table">
+        <tbody>
+            <tr>
+                <td class="td-param">Duration</td>
+                <td class="td-value">20 us</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+                    </div>
+                  </div>
+                  </td>
+             <!-- fill extra columns if this layer has more operations for a different target-->
+        </tr>
+  </tbody>
+</table>
+
+<!-- Lines for multi-qudit gates (if any) -->
+
+<!-- space for tooltip -->
+<div style="height: 200px; z-index: -1;"></div>
+
+
+
+<script>
+
+document.querySelectorAll("#id-227879-010 .qcs-tooltip").forEach(tooltip => {
+    tooltip.parentElement.addEventListener("mouseover", function (event) {
+        tooltip.style.display = "block";
+        tooltip.style.position = "absolute";
+        tooltip.style.overflow = "scroll";
+        tooltip.style.cursor = "pointer";
+        tooltip.parentElement.style.zIndex = "100";
+        if (window.getComputedStyle(tooltip.parentElement).position == "relative")
+        {
+            tooltip.style.minWidth = "150px";
+            var rect = tooltip.parentElement.getBoundingClientRect();
+            tooltip.style.left = tooltip.parentElement.style.left + rect.width * 0.75 + "px";
+        }
+    });
+    tooltip.parentElement.addEventListener("mouseleave", function (event) {
+        tooltip.style.display = "none";
+        tooltip.parentElement.style.zIndex = "2";
+    });
+});
+
+
+function changeToHighlight(element){
+element.style.backgroundColor = '#d1d7e8';
+}
+
+function changeBack(element){
+element.style.backgroundColor = "";
+}
+
+function highlightCells(event){
+event = event||window.event;
+
+var elem = event.srcElement;
+var val = elem.getAttribute("mq-id");
+
+document.querySelectorAll(`[mq-id="${val}"]`).forEach(changeToHighlight);
+
+}
+
+function deHighlightCells(event){
+event = event||window.event;
+
+var elem = event.srcElement;
+var val = elem.getAttribute("mq-id");
+
+document.querySelectorAll(`[mq-id="${val}"]`).forEach(changeBack);
+
+}
+
+
+var td_cells = document.getElementsByClassName("td_boxed_container")
+for (var i=0;i<td_cells.length;i++){
+    td_cells[i].onmouseover = highlightCells;
+    td_cells[i].onmouseleave = deHighlightCells;
+}
+
+
+
+</script>
+
+</body>
+</html>
