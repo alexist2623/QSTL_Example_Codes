@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:kactus2="http://kactus2.cs.tut.fi" xmlns:keysight="http://www.keysight.com" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+	<ipxact:vendor>keysight.com</ipxact:vendor>
+	<ipxact:library>BSP</ipxact:library>
+	<ipxact:name>AnalogTrigger</ipxact:name>
+	<ipxact:version>1.0</ipxact:version>
+	<ipxact:busInterfaces>
+		<ipxact:busInterface>
+			<ipxact:name>clock</ipxact:name>
+			<ipxact:description>Clock input</ipxact:description>
+			<ipxact:busType vendor="keysight.com" library="interfaces" name="clock" version="1.0"/>
+			<ipxact:abstractionTypes>
+				<ipxact:abstractionType>
+					<ipxact:abstractionRef vendor="keysight.com" library="interfaces" name="clock.absDef" version="1.0"/>
+					<ipxact:portMaps>
+						<ipxact:portMap>
+							<ipxact:logicalPort>
+								<ipxact:name>clk</ipxact:name>
+								<ipxact:range>
+									<ipxact:left>0</ipxact:left>
+									<ipxact:right>0</ipxact:right>
+								</ipxact:range>
+							</ipxact:logicalPort>
+							<ipxact:physicalPort>
+								<ipxact:name>clk</ipxact:name>
+								<ipxact:partSelect>
+									<ipxact:range>
+										<ipxact:left>0</ipxact:left>
+										<ipxact:right>0</ipxact:right>
+									</ipxact:range>
+								</ipxact:partSelect>
+							</ipxact:physicalPort>
+						</ipxact:portMap>
+					</ipxact:portMaps>
+				</ipxact:abstractionType>
+			</ipxact:abstractionTypes>
+			<ipxact:slave/>
+		</ipxact:busInterface>
+		<ipxact:busInterface>
+			<ipxact:name>nRst</ipxact:name>
+			<ipxact:description>Reset input (active low)</ipxact:description>
+			<ipxact:busType vendor="keysight.com" library="interfaces" name="nRst" version="1.0"/>
+			<ipxact:abstractionTypes>
+				<ipxact:abstractionType>
+					<ipxact:abstractionRef vendor="keysight.com" library="interfaces" name="nRst.absDef" version="1.0"/>
+					<ipxact:portMaps>
+						<ipxact:portMap>
+							<ipxact:logicalPort>
+								<ipxact:name>nRst</ipxact:name>
+								<ipxact:range>
+									<ipxact:left>0</ipxact:left>
+									<ipxact:right>0</ipxact:right>
+								</ipxact:range>
+							</ipxact:logicalPort>
+							<ipxact:physicalPort>
+								<ipxact:name>nRst</ipxact:name>
+								<ipxact:partSelect>
+									<ipxact:range>
+										<ipxact:left>0</ipxact:left>
+										<ipxact:right>0</ipxact:right>
+									</ipxact:range>
+								</ipxact:partSelect>
+							</ipxact:physicalPort>
+						</ipxact:portMap>
+					</ipxact:portMaps>
+				</ipxact:abstractionType>
+			</ipxact:abstractionTypes>
+			<ipxact:slave/>
+		</ipxact:busInterface>
+		<ipxact:busInterface>
+			<ipxact:name>AnalogTrigger</ipxact:name>
+			<ipxact:description>AXI streaming interface for trigger control</ipxact:description>
+			<ipxact:busType vendor="keysight.com" library="interfaces" name="axis" version="1.0"/>
+			<ipxact:abstractionTypes>
+				<ipxact:abstractionType>
+					<ipxact:abstractionRef vendor="keysight.com" library="interfaces" name="axis.absDef" version="1.0"/>
+					<ipxact:portMaps>
+						<ipxact:portMap>
+							<ipxact:logicalPort>
+								<ipxact:name>tdata</ipxact:name>
+							</ipxact:logicalPort>
+							<ipxact:physicalPort>
+								<ipxact:name>AnalogTrigger_tdata</ipxact:name>
+							</ipxact:physicalPort>
+						</ipxact:portMap>
+						<ipxact:portMap>
+							<ipxact:logicalPort>
+								<ipxact:name>tvalid</ipxact:name>
+							</ipxact:logicalPort>
+							<ipxact:physicalPort>
+								<ipxact:name>AnalogTrigger_tvalid</ipxact:name>
+							</ipxact:physicalPort>
+						</ipxact:portMap>
+					</ipxact:portMaps>
+				</ipxact:abstractionType>
+			</ipxact:abstractionTypes>
+			<ipxact:slave/>
+		</ipxact:busInterface>
+		<ipxact:busInterface>
+			<ipxact:name>Data</ipxact:name>
+			<ipxact:description>AXI streaming interface for ADC data input.  (5x supersampled)</ipxact:description>
+			<ipxact:busType vendor="keysight.com" library="interfaces" name="axis" version="1.0"/>
+			<ipxact:abstractionTypes>
+				<ipxact:abstractionType>
+					<ipxact:abstractionRef vendor="keysight.com" library="interfaces" name="axis.absDef" version="1.0"/>
+					<ipxact:portMaps>
+						<ipxact:portMap>
+							<ipxact:logicalPort>
+								<ipxact:name>tdata</ipxact:name>
+							</ipxact:logicalPort>
+							<ipxact:physicalPort>
+								<ipxact:name>Data_tdata</ipxact:name>
+							</ipxact:physicalPort>
+						</ipxact:portMap>
+						<ipxact:portMap>
+							<ipxact:logicalPort>
+								<ipxact:name>tvalid</ipxact:name>
+							</ipxact:logicalPort>
+							<ipxact:physicalPort>
+								<ipxact:name>Data_tvalid</ipxact:name>
+							</ipxact:physicalPort>
+						</ipxact:portMap>
+					</ipxact:portMaps>
+				</ipxact:abstractionType>
+			</ipxact:abstractionTypes>
+			<ipxact:slave/>
+		</ipxact:busInterface>
+		<ipxact:busInterface>
+			<ipxact:name>AnalogTriggerOut</ipxact:name>
+			<ipxact:description>Analog Trigger Result Output</ipxact:description>
+			<ipxact:busType vendor="keysight.com" library="interfaces" name="vector" version="1.0"/>
+			<ipxact:abstractionTypes>
+				<ipxact:abstractionType>
+					<ipxact:abstractionRef vendor="keysight.com" library="interfaces" name="vector.absDef" version="1.0"/>
+					<ipxact:portMaps>
+						<ipxact:portMap>
+							<ipxact:logicalPort>
+								<ipxact:name>Signal</ipxact:name>
+							</ipxact:logicalPort>
+							<ipxact:physicalPort>
+								<ipxact:name>AnalogTriggerOut</ipxact:name>
+							</ipxact:physicalPort>
+						</ipxact:portMap>
+					</ipxact:portMaps>
+				</ipxact:abstractionType>
+			</ipxact:abstractionTypes>
+			<ipxact:master/>
+		</ipxact:busInterface>
+	</ipxact:busInterfaces>
+	<ipxact:model>
+		<ipxact:views>
+			<ipxact:view>
+				<ipxact:name>flat_vhdl</ipxact:name>
+				<ipxact:envIdentifier>VHDL:Kactus2:</ipxact:envIdentifier>
+				<ipxact:componentInstantiationRef>vhdl_implementation</ipxact:componentInstantiationRef>
+			</ipxact:view>
+		</ipxact:views>
+		<ipxact:instantiations>
+			<ipxact:componentInstantiation>
+				<ipxact:name>vhdl_implementation</ipxact:name>
+				<ipxact:language>VHDL</ipxact:language>
+				<ipxact:moduleName>AnalogTriggerBlock_v2</ipxact:moduleName>
+				<ipxact:architectureName>Behavioral</ipxact:architectureName>
+				<ipxact:moduleParameters>
+					<ipxact:moduleParameter parameterId="uuid_72f5dafc_bc63_41cb_ae72_931d33c06ecb" type="int" usageType="typed">
+						<ipxact:name>C_N_STREAMS</ipxact:name>
+						<ipxact:value>uuid_0250503f_3f35_4ac1_b754_d6bca480377a</ipxact:value>
+					</ipxact:moduleParameter>
+				</ipxact:moduleParameters>
+				<ipxact:fileSetRef>
+					<ipxact:localName>src</ipxact:localName>
+				</ipxact:fileSetRef>
+			</ipxact:componentInstantiation>
+		</ipxact:instantiations>
+		<ipxact:ports>
+			<ipxact:port>
+				<ipxact:name>clk</ipxact:name>
+				<ipxact:wire>
+					<ipxact:direction>in</ipxact:direction>
+					<ipxact:wireTypeDefs>
+						<ipxact:wireTypeDef>
+							<ipxact:typeName>std_logic</ipxact:typeName>
+							<ipxact:typeDefinition>IEEE.std_logic_1164.all</ipxact:typeDefinition>
+						</ipxact:wireTypeDef>
+					</ipxact:wireTypeDefs>
+				</ipxact:wire>
+			</ipxact:port>
+			<ipxact:port>
+				<ipxact:name>nRst</ipxact:name>
+				<ipxact:wire>
+					<ipxact:direction>in</ipxact:direction>
+					<ipxact:wireTypeDefs>
+						<ipxact:wireTypeDef>
+							<ipxact:typeName>std_logic</ipxact:typeName>
+							<ipxact:typeDefinition>IEEE.std_logic_1164.all</ipxact:typeDefinition>
+						</ipxact:wireTypeDef>
+					</ipxact:wireTypeDefs>
+				</ipxact:wire>
+			</ipxact:port>
+			<ipxact:port>
+				<ipxact:name>AnalogTrigger_tvalid</ipxact:name>
+				<ipxact:wire>
+					<ipxact:direction>in</ipxact:direction>
+					<ipxact:wireTypeDefs>
+						<ipxact:wireTypeDef>
+							<ipxact:typeName>std_logic</ipxact:typeName>
+							<ipxact:typeDefinition>IEEE.std_logic_1164.all</ipxact:typeDefinition>
+						</ipxact:wireTypeDef>
+					</ipxact:wireTypeDefs>
+				</ipxact:wire>
+			</ipxact:port>
+			<ipxact:port>
+				<ipxact:name>AnalogTrigger_tdata</ipxact:name>
+				<ipxact:wire>
+					<ipxact:direction>in</ipxact:direction>
+					<ipxact:vectors>
+						<ipxact:vector>
+							<ipxact:left>23</ipxact:left>
+							<ipxact:right>0</ipxact:right>
+						</ipxact:vector>
+					</ipxact:vectors>
+					<ipxact:wireTypeDefs>
+						<ipxact:wireTypeDef>
+							<ipxact:typeName>std_logic_vector</ipxact:typeName>
+							<ipxact:typeDefinition>IEEE.std_logic_1164.all</ipxact:typeDefinition>
+						</ipxact:wireTypeDef>
+					</ipxact:wireTypeDefs>
+				</ipxact:wire>
+			</ipxact:port>
+			<ipxact:port>
+				<ipxact:name>Data_tdata</ipxact:name>
+				<ipxact:wire>
+					<ipxact:direction>in</ipxact:direction>
+					<ipxact:vectors>
+						<ipxact:vector>
+							<ipxact:left>16*uuid_0250503f_3f35_4ac1_b754_d6bca480377a-1</ipxact:left>
+							<ipxact:right>0</ipxact:right>
+						</ipxact:vector>
+					</ipxact:vectors>
+					<ipxact:wireTypeDefs>
+						<ipxact:wireTypeDef>
+							<ipxact:typeName>std_logic_vector</ipxact:typeName>
+							<ipxact:typeDefinition>IEEE.std_logic_1164.all</ipxact:typeDefinition>
+						</ipxact:wireTypeDef>
+					</ipxact:wireTypeDefs>
+				</ipxact:wire>
+			</ipxact:port>
+			<ipxact:port>
+				<ipxact:name>Data_tvalid</ipxact:name>
+				<ipxact:wire>
+					<ipxact:direction>in</ipxact:direction>
+					<ipxact:wireTypeDefs>
+						<ipxact:wireTypeDef>
+							<ipxact:typeName>std_logic</ipxact:typeName>
+							<ipxact:typeDefinition>IEEE.std_logic_1164.all</ipxact:typeDefinition>
+						</ipxact:wireTypeDef>
+					</ipxact:wireTypeDefs>
+				</ipxact:wire>
+			</ipxact:port>
+			<ipxact:port>
+				<ipxact:name>AnalogTriggerOut</ipxact:name>
+				<ipxact:wire>
+					<ipxact:direction>out</ipxact:direction>
+					<ipxact:vectors>
+						<ipxact:vector>
+							<ipxact:left>uuid_0250503f_3f35_4ac1_b754_d6bca480377a-1</ipxact:left>
+							<ipxact:right>0</ipxact:right>
+						</ipxact:vector>
+					</ipxact:vectors>
+					<ipxact:wireTypeDefs>
+						<ipxact:wireTypeDef>
+							<ipxact:typeName>std_logic_vector</ipxact:typeName>
+							<ipxact:typeDefinition>IEEE.std_logic_1164.all</ipxact:typeDefinition>
+						</ipxact:wireTypeDef>
+					</ipxact:wireTypeDefs>
+				</ipxact:wire>
+			</ipxact:port>
+		</ipxact:ports>
+	</ipxact:model>
+	<ipxact:fileSets>
+		<ipxact:fileSet>
+			<ipxact:name>src</ipxact:name>
+			<ipxact:file>
+				<ipxact:name>src/AnalogTriggerBlock_500.vhd</ipxact:name>
+				<ipxact:fileType>vhdlSource</ipxact:fileType>
+				<ipxact:vendorExtensions>
+					<kactus2:hash>214f3151091ad720871be59cd57fb42865b2338b</kactus2:hash>
+				</ipxact:vendorExtensions>
+			</ipxact:file>
+		</ipxact:fileSet>
+		<ipxact:fileSet>
+			<ipxact:name>lib</ipxact:name>
+			<ipxact:file>
+				<ipxact:name>src/Sub48/Sub48.xci</ipxact:name>
+				<ipxact:fileType user="xci">user</ipxact:fileType>
+				<ipxact:vendorExtensions>
+					<kactus2:hash>7e57971dac89688803769920b1c90854</kactus2:hash>
+				</ipxact:vendorExtensions>
+			</ipxact:file>
+		</ipxact:fileSet>
+	</ipxact:fileSets>
+	<ipxact:description>Analog trigger block</ipxact:description>
+	<ipxact:parameters>
+		<ipxact:parameter parameterId="uuid_0250503f_3f35_4ac1_b754_d6bca480377a" resolve="immediate" type="int">
+			<ipxact:name>C_N_STREAMS</ipxact:name>
+			<ipxact:value>5</ipxact:value>
+		</ipxact:parameter>
+	</ipxact:parameters>
+	<ipxact:vendorExtensions>
+		<kactus2:author>Keysight</kactus2:author>
+		<kactus2:fileDependencies>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>src/AnalogTriggerBlock_500.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/Sub48.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity Sub48</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>src/AnalogTriggerBlock_500.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/vcomponents.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package vcomponents</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP48_ADD_ffAxB_ffC_Pcout/sim/DSP48_ADD_ffAxB_ffC_Pcout.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP48_ADD_ffAxB_ffC_Pcout/synth/DSP48_ADD_ffAxB_ffC_Pcout.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP48_IP_ADD_1ffAxb_Cin_ffPout_ABrst/sim/DSP48_IP_ADD_1ffAxb_Cin_ffPout_ABrst.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP48_IP_ADD_1ffAxb_Cin_ffPout_ABrst/synth/DSP48_IP_ADD_1ffAxb_Cin_ffPout_ABrst.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP48_phaseOffsetGen/sim/DSP48_phaseOffsetGen.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP48_phaseOffsetGen/synth/DSP48_phaseOffsetGen.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_0/DSP_FIR_0_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_0/DSP_FIR_0_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_0/synth/DSP_FIR_0.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_1/DSP_FIR_1_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_1/DSP_FIR_1_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_1/synth/DSP_FIR_1.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_2/DSP_FIR_2_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_2/DSP_FIR_2_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_FIR_2/synth/DSP_FIR_2.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_INTEGFREQ_1G/sim/DSP_INTEGFREQ_1G.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/DSP_INTEGFREQ_1G/synth/DSP_INTEGFREQ_1G.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/xbip_dsp48_macro_v3_0_15.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity xbip_dsp48_macro_v3_0_15</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_Dist_FWFT_4bits/FIFO_Dist_FWFT_4bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/out.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity out</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_Dist_FWFT_4bits/FIFO_Dist_FWFT_4bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_Dist_FWFT_4bits/FIFO_Dist_FWFT_4bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_Dist_FWFT_4bits/synth/FIFO_Dist_FWFT_4bits.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/fifo_generator_v12_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity fifo_generator_v12_0</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK/FIFO_FWFT_CHG_CLK_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/out.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity out</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK/FIFO_FWFT_CHG_CLK_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK/FIFO_FWFT_CHG_CLK_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK/synth/FIFO_FWFT_CHG_CLK.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/fifo_generator_v12_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity fifo_generator_v12_0</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK_36bits/FIFO_FWFT_CHG_CLK_36bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/out.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity out</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK_36bits/FIFO_FWFT_CHG_CLK_36bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK_36bits/FIFO_FWFT_CHG_CLK_36bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_CHG_CLK_36bits/synth/FIFO_FWFT_CHG_CLK_36bits.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/fifo_generator_v12_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity fifo_generator_v12_0</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_12bits/FIFO_FWFT_Dist_12bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/out.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity out</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_12bits/FIFO_FWFT_Dist_12bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_12bits/FIFO_FWFT_Dist_12bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_12bits/synth/FIFO_FWFT_Dist_12bits.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/fifo_generator_v12_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity fifo_generator_v12_0</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_14bits/FIFO_FWFT_Dist_14bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/out.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity out</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_14bits/FIFO_FWFT_Dist_14bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/in.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity in</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_14bits/FIFO_FWFT_Dist_14bits_funcsim.vhdl</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/VCOMPONENTS.vhd</kactus2:fileRef2>
+				<ipxact:description>Reference to a package VCOMPONENTS</ipxact:description>
+			</kactus2:fileDependency>
+			<kactus2:fileDependency manual="false" bidirectional="false" locked="false">
+				<kactus2:fileRef1>../../libraries/IPcores_160T/FIFO_FWFT_Dist_14bits/synth/FIFO_FWFT_Dist_14bits.vhd</kactus2:fileRef1>
+				<kactus2:fileRef2>$External$/fifo_generator_v12_0.vhd</kactus2:fileRef2>
+				<ipxact:description>Component instantiation for entity fifo_generator_v12_0</ipxact:description>
+			</kactus2:fileDependency>
+		</kactus2:fileDependencies>
+		<kactus2:version>3,5,0,0</kactus2:version>
+		<kactus2:kts_attributes>
+			<kactus2:kts_productHier>Flat</kactus2:kts_productHier>
+			<kactus2:kts_implementation>HW</kactus2:kts_implementation>
+			<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
+		</kactus2:kts_attributes>
+		<keysight:ipMetadata>
+			<keysight:supportedHardware>
+				<keysight:supportedBoards>
+					<keysight:vendorBoards>
+						<keysight:vendor>keysight.com</keysight:vendor>
+						<keysight:boards>
+							<keysight:board>M3102A</keysight:board>
+							<keysight:board>M3302A</keysight:board>
+						</keysight:boards>
+					</keysight:vendorBoards>
+				</keysight:supportedBoards>
+			</keysight:supportedHardware>
+		</keysight:ipMetadata>
+	</ipxact:vendorExtensions>
+</ipxact:component>
