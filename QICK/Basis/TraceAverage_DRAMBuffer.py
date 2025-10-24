@@ -130,6 +130,8 @@ if __name__ == "__main__":
     plt.plot(data)
     plt.show()
 
+    print(prog)
+
     print("Acquisition Time: %.3f s, Mean Time: %.3f s"%(
         mean_start_time - start_time, mean_end_time - mean_start_time
     ))

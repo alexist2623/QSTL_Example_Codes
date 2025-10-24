@@ -113,6 +113,7 @@ if __name__ == "__main__":
         soccfg,
         cfg
     )
+    print(prog)
     data = prog.acquire_decimated(soc = soc, progress = True)
     end_time = time.time()
     print(f"Acquisition time : %f", end_time - start_time)

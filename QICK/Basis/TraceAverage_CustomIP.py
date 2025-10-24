@@ -113,27 +113,29 @@ if __name__ == "__main__":
     # Set ADC Channel filter as bypass mode
     soc.rfb_set_ro_filter(0, fc = 2.5, ftype = "lowpass")
 
-    start_time = time.time()
     cfg = {
         # Experiment Setup
         "reps" : 50000,
         "expts" : 1,
         # Parameter Setup
         "freq_rf" : 501.00000,
-        "pulse_time" : 300,
+        "pulse_time" : 400,
         "number_of_pulse" : 10
     }
     prog = MultiPulseLoopBackExample(
         soccfg,
         cfg
     )
-    LEN = 5
+    LEN = 19
+    start_time = time.time()
     data = (prog.acquire_trace_avg(soc = soc, progress = True))[0][0]
     for i in range(LEN):
         data += (prog.acquire_trace_avg(soc = soc, progress = True))[0][0]
     end_time = time.time()
 
-    print(f"Acquisition time for {cfg['reps']*LEN} averages: {end_time - start_time} s")
+    print(f"Acquisition time for {cfg['reps']*(LEN+1)} averages: {end_time - start_time} s")
     plt.figure()
     plt.plot(data)
     plt.show()
+
+    print(prog)
