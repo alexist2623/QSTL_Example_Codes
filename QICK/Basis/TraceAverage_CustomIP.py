@@ -15,16 +15,13 @@ from qick.pyro import make_proxy
 
 class MultiPulseLoopBackExample(AveragerProgram):
     def initialize(self):
+        self.phrst = 0
         # set the nyquist zone
         cfg = self.cfg
         freq_rf     = cfg["freq_rf"]
         # Declare RF generation channel
         self.declare_gen(
             ch      = 0,        # Channel
-            nqz     = 2         # Nyquist Zone
-        )
-        self.declare_gen(
-            ch      = 2,        # Channel
             nqz     = 2         # Nyquist Zone
         )
         # Declare RF input channel
@@ -54,21 +51,12 @@ class MultiPulseLoopBackExample(AveragerProgram):
                                                     # of waveform is specified in envelope,
                                                     # rather than pulse register
         )
-        self.add_gauss(
-            2,                  # Set output channel number
-            name    = "gauss",  # Set envelope name
-            sigma   = int(cfg["pulse_time"] / 10),  # Sigma of gaussian
-            length  = cfg["pulse_time"],       # Total length of envelope. 
-                                                    # When envelope is used, lenght
-                                                    # of waveform is specified in envelope,
-                                                    # rather than pulse register
-        )
         # Set ADC DDS
         self.set_readout_registers(
             ch      = 0,        # Readout channel
             freq    = freq_adc, # Readout DDS frequency
             length  = 16, # Readout DDS multiplication length
-            phrst   = 0,        # Readout DDS phase reset
+            phrst   = self.phrst# Readout DDS phase reset
         )
         self.synci(100)
 
@@ -90,7 +78,7 @@ class MultiPulseLoopBackExample(AveragerProgram):
                 freq    = self.freq_dac, # Generator DDS frequency
                 phase   = self.deg2reg(0, gen_ch = 0),        # Generator DDS phase
                 gain    = int(1000), # Generator amplitude
-                phrst   = 0,        # Generator DDS phase reset
+                phrst   = self.phrst,# Generator DDS phase reset
                 outsel  = "product",# Output is envelope * gain * DDS output
                 waveform= "gauss",  # Set envelope to be multiplied
                 t       = (cfg["pulse_time"] + 100) * i + 100
@@ -119,14 +107,14 @@ if __name__ == "__main__":
         "expts" : 1,
         # Parameter Setup
         "freq_rf" : 501.00000,
-        "pulse_time" : 400,
+        "pulse_time" : 100,
         "number_of_pulse" : 10
     }
     prog = MultiPulseLoopBackExample(
         soccfg,
         cfg
     )
-    LEN = 19
+    LEN = 1
     start_time = time.time()
     data = (prog.acquire_trace_avg(soc = soc, progress = True))[0][0]
     for i in range(LEN):

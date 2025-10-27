@@ -80,7 +80,7 @@ class MultiPulseLoopBackExample(AveragerProgram):
                 phrst   = 0,        # Generator DDS phase reset
                 outsel  = "product",# Output is envelope * gain * DDS output
                 waveform= "gauss",  # Set envelope to be multiplied
-                t       = cfg["pulse_time"] * (i+1) + 100
+                t       = (cfg["pulse_time"] + 100) * (i+1) + 100
             )
         self.sync_all()
 
