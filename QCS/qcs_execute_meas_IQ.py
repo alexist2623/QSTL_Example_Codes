@@ -1,5 +1,6 @@
 """QCS execution measurement program"""
 import keysight.qcs as qcs
+import numpy as np
 import time
 
 ns = 1e-9
@@ -64,10 +65,16 @@ backend = qcs.HclBackend(
     init_time = 60 * ns,
 )
 
-start_time = time.time()
-program = qcs.Executor(backend).execute(program)
-# program.to_hdf5("test_result")
-end_time = time.time()
+t = []
+for i in range(10):
+    start_time = time.time()
+    program = qcs.Executor(backend).execute(program)
+    # program.to_hdf5("test_result")
+    end_time = time.time()
 
-print(end_time - start_time)
+    print(end_time - start_time)
+    if i != 0:
+        t.append(end_time-start_time)
+
+print(f"Average time after first : {np.array(t).mean()}")
 
