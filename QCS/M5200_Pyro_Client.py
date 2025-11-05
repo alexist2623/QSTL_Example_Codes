@@ -53,7 +53,7 @@ def make_proxy(ns_host, ns_port=8888, proxy_name='digitizer_0', remote_traceback
 
 if __name__ == "__main__":
     dig = make_proxy(
-        ns_host = "127.0.0.1",
+        ns_host = "192.168.19.2",
         ns_port = 8888,
         proxy_name='digitizer_0'
     )

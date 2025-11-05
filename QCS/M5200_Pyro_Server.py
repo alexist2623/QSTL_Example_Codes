@@ -32,8 +32,9 @@ class M5200_Wrapper:
     def __init__(self, dev):
         self.dev = dev
     
-    def fetch_waveform_int16(self, buffer, number_of_samples) -> None:
+    def fetch_waveform_int16(self, buffer, number_of_samples) -> np.array:
         self.dev.fetch_waveform_int16(buffer, number_of_samples)
+        return buffer
     
     def daq_flush(self) -> None:
         self.dev.daq_flush()
@@ -65,7 +66,7 @@ if __name__ == "__main__":
         reset,
         options
     )
-    ns_host = "127.0.0.1"
+    ns_host = "192.168.19.2"
     ns_port = 8888
     proxy_name="digitizer_0"
 
